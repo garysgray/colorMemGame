@@ -1,0 +1,10 @@
+# Python cache
+__pycache__/
+*.pyc
+
+# Temporary or personal files
+stuff/
+
+# VSCode / OS specific
+.vscode/
+.DS_Store
