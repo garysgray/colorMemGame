@@ -1,78 +1,98 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Color Sorter</title>
-<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Fraunces:ital,opsz,wght@0,9..144,300;1,9..144,300&display=swap" rel="stylesheet">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Color Sorter</title>
+
+  <!-- Google Fonts: DM Mono for code/hex values, Fraunces for headings -->
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Fraunces:ital,opsz,wght@0,9..144,300;1,9..144,300&display=swap" rel="stylesheet">
+
+  <!-- defer means the script runs AFTER the HTML is fully parsed -->
   <script type="text/javascript" src="js/main.js" defer></script>
   <link rel="stylesheet" type="text/css" href="css/styles.css"> 
 </head>
+
 <body>
 
-<header>
-  <h1>Color Sorter</h1>
-  <p>drag chips between collections — both panels work the same</p>
-</header>
+  <!-- Page heading and subtitle -->
+  <header>
+    <h1>Color Sorter</h1>
+    <p>drag chips between collections — both panels work the same</p>
+  </header>
 
-<div class="arena">
+  <!-- The main drag-and-drop area containing both panels side by side -->
+  <div class="arena">
 
-  <div class="panel">
-    <div class="panel-header">
-      <span class="panel-title">Palette A</span>
-      <span class="count-badge has-items" id="badge-a">3 colors</span>
+    <!-- LEFT PANEL — Palette A -->
+    <div class="panel">
+      <div class="panel-header">
+        <span class="panel-title">Palette A</span>
+        <!-- Badge showing chip count; id="badge-a" is updated by JS -->
+        <span class="count-badge has-items" id="badge-a">3 colors</span>
+      </div>
+
+      <!-- The actual drop zone; id="zone-a" is what JS listens to for drops -->
+      <div class="drop-zone" id="zone-a">
+        <!-- Each chip's id matches a key in colrDict in main.js -->
+        <div class="color-chip" id="Blue">Blue <span class="chip-hex">#00CFCF</span></div>
+        <div class="color-chip" id="Yellow">Yellow <span class="chip-hex">#E8D84A</span></div>
+        <div class="color-chip" id="Green">Green <span class="chip-hex">#2E7D4F</span></div>
+      </div>
     </div>
-    <div class="drop-zone" id="zone-a">
-      <div class="color-chip" id="Blue">Blue <span class="chip-hex">#00CFCF</span></div>
-      <div class="color-chip" id="Yellow">Yellow <span class="chip-hex">#E8D84A</span></div>
-      <div class="color-chip" id="Green">Green <span class="chip-hex">#2E7D4F</span></div>
+
+    <!-- Decorative arrow between the two panels -->
+    <div class="arrow-col">⇄</div>
+
+    <!-- RIGHT PANEL — Palette B (identical structure to Panel A) -->
+    <div class="panel">
+      <div class="panel-header">
+        <span class="panel-title">Palette B</span>
+        <!-- Badge for Palette B; id="badge-b" is updated by JS -->
+        <span class="count-badge has-items" id="badge-b">3 colors</span>
+      </div>
+
+      <!-- Drop zone B; id="zone-b" is the second zone JS tracks -->
+      <div class="drop-zone" id="zone-b">
+        <div class="color-chip" id="Orange">Orange <span class="chip-hex">#E07020</span></div>
+        <div class="color-chip" id="Purple">Purple <span class="chip-hex">#9B59B6</span></div>
+        <div class="color-chip" id="Red">Red <span class="chip-hex">#C0384A</span></div>
+      </div>
+    </div>
+
+  </div><!-- end .arena -->
+
+  <!-- Log panel below the arena — shows a live text list of each palette's contents -->
+  <div class="log-panel">
+    <h3>Contents</h3>
+    <div class="log-grid">
+
+      <!-- Log entry for Palette A; id="log-a" is written to by JS -->
+      <div class="log-entry">
+        <div class="log-label">Palette A</div>
+        <div class="log-content" id="log-a"></div>
+      </div>
+
+      <!-- Log entry for Palette B; id="log-b" is written to by JS -->
+      <div class="log-entry">
+        <div class="log-label">Palette B</div>
+        <div class="log-content" id="log-b"></div>
+      </div>
+
     </div>
   </div>
 
-  <div class="arrow-col">⇄</div>
-
-  <div class="panel">
-    <div class="panel-header">
-      <span class="panel-title">Palette B</span>
-      <span class="count-badge has-items" id="badge-b">3 colors</span>
-    </div>
-    <div class="drop-zone" id="zone-b">
-      <div class="color-chip" id="Orange">Orange <span class="chip-hex">#E07020</span></div>
-      <div class="color-chip" id="Purple">Purple <span class="chip-hex">#9B59B6</span></div>
-      <div class="color-chip" id="Red">Red <span class="chip-hex">#C0384A</span></div>
-    </div>
+  <!-- GitHub link in the bottom corner -->
+  <div class="github-wrap">
+    <a class="github-link" href="https://github.com/garysgray/Color-Builder-Interface" target="_blank">
+      <!-- Inline SVG of the GitHub logo (no extra image file needed) -->
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/>
+      </svg>
+      View on GitHub
+    </a>
   </div>
 
-</div>
-
-<div class="log-panel">
-  <h3>Contents</h3>
-  <div class="log-grid">
-    <div class="log-entry">
-      <div class="log-label">Palette A</div>
-      <div class="log-content" id="log-a"></div>
-    </div>
-    <div class="log-entry">
-      <div class="log-label">Palette B</div>
-      <div class="log-content" id="log-b"></div>
-    </div>
-  </div>
-</div>
-</div>
-     
-        <div class="github-wrap">
-  <a class="github-link" href="https://github.com/garysgray/Color-Builder-Interface" target="_blank">
-    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
-      <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/>
-    </svg>
-    View on GitHub
-  </a>
-</div>
-
-</div>
 </body>
-
-
-
-
+</html>
 

@@ -1,4 +1,6 @@
-# Color Sorter — Drag & Drop Interface
+![Game Splash](images/colorSorta_small.png)
+
+# Color Sorta — Drag & Drop Interface
 
 A drag-and-drop color sorting interface built with vanilla JavaScript.
 
@@ -42,4 +44,4 @@ A memory game — **Color Memory** — is in active design using this interface 
 
 - [Original JSFiddle](https://jsfiddle.net/garysgray/uyo0pr1c/)
 - [Original Demo Site](http://garysgameapps.orgfree.com/Draggable/)
-- [GitHub](https://github.com/garysgray/Color-Builder-Interface)
+- [OG-GitHub](https://github.com/garysgray/Color-Builder-Interface)
